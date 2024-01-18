@@ -66,7 +66,7 @@ const images = [
 
 const gallery = document.querySelector('.gallery');
 function galleryTemplate(image) {
-    return `<li class="gallery-item" data-id = "${image.id}">
+    return `<li class="gallery-item" data-source = "${image.original}">
   <a class="gallery-link" href="">
     <img
       class="gallery-image"
@@ -92,14 +92,12 @@ gallery.addEventListener('click', e => {
     if (e.target === e.currentTarget) return;
 
   const galleryItem = e.target.closest('li');
-    const id = galleryItem.dataset.id;
-    const image = images.find(img => img.id == id);
-  
+    const url = galleryItem.dataset.source;
   const instance = basicLightbox.create(`
     <img
       class="gallery-image"
-      src="${image.original}"
-      alt="${image.description}"
+      src="${url}"
+      alt="${url}"
       
     />
 ` ,{
